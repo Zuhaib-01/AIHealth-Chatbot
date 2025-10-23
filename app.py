@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from langchain_ollama import OllamaLLM
+from langchain.chat_models import ChatOpenAI
 
 # -----------------------------------
 # 🧠 Page Setup
@@ -136,7 +136,8 @@ Question: {user_input}
 Answer clearly using only reliable dataset information.
     """
 
-    llm = OllamaLLM(model="llama3.2", temperature=0)
+    # llm = OllamaLLM(model="llama3.2", temperature=0)
+    llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0, openai_api_key=st.secrets["OPENAI_API_KEY"])
     try:
         response = llm.invoke(prompt)
         response_text = str(response) if not isinstance(response, dict) else response.get("content", str(response))
