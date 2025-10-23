@@ -3,6 +3,7 @@ pandas
 # numpy
 # scikit-learn
 # langchain-ollama
-langchain
-openai
-langchain_openai
+# langchain
+# openai
+# langchain_openai
+requests
