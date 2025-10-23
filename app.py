@@ -1,14 +1,13 @@
 import streamlit as st
 import pandas as pd
-from langchain_openai.chat_models import ChatOpenAI
+# from langchain_openai.chat_models import ChatOpenAI
 
 # -----------------------------------
 # ⚠ Check for API Key
 # -----------------------------------
-if "OPENAI_API_KEY" not in st.secrets:
-    st.error("❌ OPENAI_API_KEY not found. Add it in .streamlit/secrets.toml")
+if "GROQ_API_KEY" not in st.secrets:
+    st.error("❌ GROQ_API_KEY not found. Add it in .streamlit/secrets.toml")
     st.stop()
-
 # -----------------------------------
 # 🧠 Page Setup
 # -----------------------------------
@@ -144,10 +143,20 @@ Answer clearly using only reliable dataset information.
     """
 
     # llm = OllamaLLM(model="llama3.2", temperature=0)
-    llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0, openai_api_key=st.secrets["OPENAI_API_KEY"])
+    import requests
     try:
-        response = llm.invoke(prompt)
-        response_text = str(response) if not isinstance(response, dict) else response.get("content", str(response))
+        headers = {
+        "Authorization": f"Bearer {st.secrets['GROQ_API_KEY']}",
+        "Content-Type": "application/json"
+        }
+        payload = {
+        "model": "llama3.2",  # or the Groq model you want
+        "input": prompt,
+        "temperature": 0
+        }
+        r = requests.post("https://api.groq.ai/v1/chat", headers=headers, json=payload)
+        data = r.json()
+        response_text = data.get("output", "No response from Groq API")
     except Exception as e:
         response_text = f"Error generating response: {e}"
 
