@@ -14,7 +14,9 @@ st.title("💬 Medical Data Chatbot (Llama 3.2 + Ollama)")
 default_files = {
     "Symptom_severity.csv": None,
     "symptom_Description.csv": None,
-    "symptom_precaution.csv": None
+    "symptom_precaution.csv": None,
+    "dataset.csv":None,
+    "Diseases_Symptoms.csv":None
 }
 
 for file in default_files:
