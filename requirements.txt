@@ -1,6 +1,8 @@
 streamlit
-numpy
-scikit-learn
-langchain-ollama
+pandas
+# numpy
+# scikit-learn
+# langchain-ollama
 langchain
 openai
+langchain_openai
