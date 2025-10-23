@@ -1,6 +1,13 @@
 import streamlit as st
 import pandas as pd
-from langchain.chat_models import ChatOpenAI
+from langchain_openai.chat_models import ChatOpenAI
+
+# -----------------------------------
+# ⚠ Check for API Key
+# -----------------------------------
+if "OPENAI_API_KEY" not in st.secrets:
+    st.error("❌ OPENAI_API_KEY not found. Add it in .streamlit/secrets.toml")
+    st.stop()
 
 # -----------------------------------
 # 🧠 Page Setup
