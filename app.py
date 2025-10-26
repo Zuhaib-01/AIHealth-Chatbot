@@ -12,7 +12,7 @@ if "GROQ_API_KEY" not in st.secrets:
 # 🧠 Page Setup
 # -----------------------------------
 st.set_page_config(page_title="Medical Data Chatbot", page_icon="🩺", layout="centered")
-st.title("💬 Medical Data Chatbot (Llama 3.2 + OpenAI)")
+st.title("💬 Medical Data Chatbot (Llama 3.2 + Groq)")
 
 # -----------------------------------
 # 📚 Load Default Datasets
